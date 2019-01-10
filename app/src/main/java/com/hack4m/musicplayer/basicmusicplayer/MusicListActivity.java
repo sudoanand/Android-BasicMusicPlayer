@@ -2,7 +2,6 @@ package com.hack4m.musicplayer.basicmusicplayer;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,13 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MusicListActivity extends AppCompatActivity {
 
     RecyclerView audioListView;
     AudioListAdapter audioListAdapter;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getSongs(){
-        context = MainActivity.this;
+        context = MusicListActivity.this;
         audioListView = findViewById(R.id.audioListView);
 
         List<AudioModel> allAudioFiles = getAllAudioFromDevice(context);

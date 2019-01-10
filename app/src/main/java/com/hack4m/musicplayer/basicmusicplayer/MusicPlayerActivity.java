@@ -31,6 +31,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         TextView audioName = findViewById(R.id.audioName);
         Button playBtn = findViewById(R.id.playBtn);
+        Button viewAllMediaBtn = findViewById(R.id.viewAllMedia);
 
         if(audio!=null){
             audioName.setText(audio.getaName());
@@ -43,6 +44,15 @@ public class MusicPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startPlaying();
+            }
+        });
+
+        viewAllMediaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopPlaying();
+                startActivity(new Intent(getApplicationContext(),MusicListActivity.class));
+                //finish();
             }
         });
 
@@ -79,8 +89,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
     }
 
     public void stopPlaying(){
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+        }
     }
 
     public void enableSeekBar(){
@@ -90,7 +101,10 @@ public class MusicPlayerActivity extends AppCompatActivity {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                seekBar.setProgress(mediaPlayer.getCurrentPosition());
+
+                if(mediaPlayer!=null && mediaPlayer.isPlaying()){
+                    seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                }
             }
         }, 0, 10);
 
