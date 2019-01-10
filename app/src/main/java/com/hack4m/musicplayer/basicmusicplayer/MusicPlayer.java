@@ -1,14 +1,17 @@
 package com.hack4m.musicplayer.basicmusicplayer;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,7 +33,12 @@ public class MusicPlayer extends AppCompatActivity {
         TextView audioName = findViewById(R.id.audioName);
         Button playBtn = findViewById(R.id.playBtn);
 
-        audioName.setText(audio.getaName());
+        if(audio!=null){
+            audioName.setText(audio.getaName());
+        }else{
+            audioName.setText("Piano.wav");
+        }
+
 
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,14 +50,38 @@ public class MusicPlayer extends AppCompatActivity {
     }
 
     public void startPlaying(){
-        mediaPlayer = MediaPlayer.create(MusicPlayer.this, Uri.parse(audio.getaPath()));
-        mediaPlayer.start();
+        if(mediaPlayer!=null && mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+        }
+
+        if(audio!=null){
+
+            Toast.makeText(getApplicationContext(),"Playing from device; "+audio.getaPath(),Toast.LENGTH_SHORT).show();
+            mediaPlayer = MediaPlayer.create(MusicPlayer.this, Uri.parse(audio.getaPath()));
+            mediaPlayer.start();
+
+        }else{
+
+            Toast.makeText(getApplicationContext(),"Playing from app",Toast.LENGTH_SHORT).show();
+            try {
+                AssetFileDescriptor afd = getAssets().openFd("piano.wav");
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                afd.close();
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         enableSeekBar();
     }
 
     public void stopPlaying(){
         mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
     public void enableSeekBar(){
