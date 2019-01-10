@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hack4m.musicplayer.basicmusicplayer">
+    package="com.hack4m.android.basicmusicplayer">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MusicListActivity">
+        <activity android:name="com.hack4m.android.basicmusicplayer.MusicListActivity">
 
         </activity>
-        <activity android:name=".MusicPlayerActivity">
+        <activity android:name="com.hack4m.android.basicmusicplayer.MusicPlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

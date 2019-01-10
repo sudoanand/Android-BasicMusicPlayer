@@ -1,4 +1,4 @@
-package com.hack4m.musicplayer.basicmusicplayer;
+package com.hack4m.android.basicmusicplayer;
 
 import org.junit.Test;
 
