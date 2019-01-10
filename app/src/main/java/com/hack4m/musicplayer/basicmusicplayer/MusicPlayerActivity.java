@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MusicPlayer extends AppCompatActivity {
+public class MusicPlayerActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
     AudioModel audio;
@@ -57,7 +56,7 @@ public class MusicPlayer extends AppCompatActivity {
         if(audio!=null){
 
             Toast.makeText(getApplicationContext(),"Playing from device; "+audio.getaPath(),Toast.LENGTH_SHORT).show();
-            mediaPlayer = MediaPlayer.create(MusicPlayer.this, Uri.parse(audio.getaPath()));
+            mediaPlayer = MediaPlayer.create(MusicPlayerActivity.this, Uri.parse(audio.getaPath()));
             mediaPlayer.start();
 
         }else{

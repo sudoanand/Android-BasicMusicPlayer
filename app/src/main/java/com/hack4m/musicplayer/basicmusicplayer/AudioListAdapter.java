@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -65,7 +63,7 @@ public class AudioListAdapter extends RecyclerView.Adapter<AudioListAdapter.Audi
 
             int itemPosition = getAdapterPosition();
 
-            Intent intent = new Intent(nContext,MusicPlayer.class);
+            Intent intent = new Intent(nContext,MusicPlayerActivity.class);
             intent.putExtra("audio",audioList.get(itemPosition));
 
             nContext.startActivity(intent);
