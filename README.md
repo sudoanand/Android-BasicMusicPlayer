@@ -7,5 +7,8 @@ A very basic android  music player application project  for beginners
 - Enter the git path for this repository: `https://github.com/hack4mer/Android-BasicMusicPlayer.git`
 - Clone it, Build it, Run it.
 
+### Tutorial
+https://anandsingh.dev/blog/creating-basic-android-music-player-app-using-mediaplayer
+
 ## Help
 Tweet to me: [@hack4mer](https://hack4mer.me)
